@@ -50,7 +50,7 @@ const Header = ({activeTab, setActiveTab}) => {
                     </button>
                 </div>
             </nav>
-            <nav className="lg:hidden justify-between flex p-3">
+            <nav className="lg:hidden md:hidden justify-between flex p-3">
                 <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTab('track')}>
                     <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200 dark:shadow-none">
                         <Package size={24} />
