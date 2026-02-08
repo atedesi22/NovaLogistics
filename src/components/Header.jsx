@@ -19,7 +19,7 @@ const Header = ({activeTab, setActiveTab}) => {
                     {[
                         {id: 'track', label: 'Suivi de Colis', icon: <Package size={18}/>},
                         {id: 'calc', label: 'Calculateur', icon: <Calculator size={18}/>},
-                        {id: 'hangar', label: 'Mon Hangar', icon: <LayoutDashboard size={18}/>},
+                        {id: 'admin', label: 'Mon Hangar', icon: <LayoutDashboard size={18}/>},
                     ].map((item) => (
                         <button
                             key={item.id}
