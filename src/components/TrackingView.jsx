@@ -16,7 +16,7 @@ const TrackingView = () =>{
 
         <>
             {/* Header & Search */}
-                <Header/>
+                {/* <Header/> */}
 
             <div className="min-h-screen bg-white dark:bg-slate-900 pb-20">
       
