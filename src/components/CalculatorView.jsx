@@ -32,7 +32,7 @@ const CalculatorView = () => {
         
         const basePrice = finalWeight * rates[origin][mode];
         const customsFees = basePrice * rates[origin].customs;
-        setTotal(basePrice + customsFees + 5000);
+        setTotal(basePrice + customsFees + 15000);
         
     };
 
