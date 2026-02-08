@@ -15,7 +15,7 @@ const LandingPage = ({ onEnter }) => {
           onClick={onEnter}
           className="bg-slate-900 dark:bg-white dark:text-slate-900 text-white px-6 py-2 rounded-full text-xs font-black hover:scale-105 transition-all active:scale-95"
         >
-          CONNEXION TERMINAL
+          CONNEXION
         </button>
       </nav>
 

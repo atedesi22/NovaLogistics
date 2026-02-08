@@ -5,7 +5,7 @@ import { Bell, Calculator, LayoutDashboard, Package, Search, User2 } from "lucid
 const Header = ({activeTab, setActiveTab}) => {
     return(
         <>
-            <nav className="hidden md:flex sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-8 py-4 justify-between items-center">
+            <nav className="hidden md:flex sticky top-0 z-50 bg-white dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-8 py-4 justify-between items-center">
                 <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTab('track')}>
                     <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200 dark:shadow-none">
                         <Package size={24} />

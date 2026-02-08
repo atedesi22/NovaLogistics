@@ -32,7 +32,7 @@ const App = () => {
 
   // 3. Interface une fois connecté (L'Univers NovaVerse)
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-500">
       
       {/* Navbar Desktop : cachée sur mobile via tailwind (hidden md:flex) */}
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />

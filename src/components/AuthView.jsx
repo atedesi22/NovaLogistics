@@ -14,13 +14,40 @@ const AuthView = ({ onLogin }) => {
       <div className="max-w-5xl w-full grid md:grid-cols-2 bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden shadow-2xl">
         {/* Côté Gauche : Branding */}
         <div className="hidden md:flex bg-blue-600 p-12 flex-col justify-between text-white relative overflow-hidden">
-          <div className="relative z-10">
-            <h2 className="text-4xl font-black italic leading-tight">Accédez à l'écosystème NovaVerse.</h2>
-            <p className="mt-4 text-blue-100 font-medium">Gérez vos flux logistiques mondiaux avec la précision d'une IA.</p>
-          </div>
-          <div className="text-sm font-bold opacity-50 z-10 italic">MOD_LOGISTICS_V1.0</div>
-          {/* Un cercle décoratif pour le look futuriste */}
-          <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500 rounded-full blur-3xl opacity-50"></div>
+          <div className="absolute z-0 inset-0 transition-transform duration-700 group-hover:scale-110"
+            style={{
+                    backgroundImage: `url('/bc.JPG')`, // Une image de port/entrepôt high-tech
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                }}
+            >
+            
+            {/* L'OVERLAY (Le voile bleu NovaVerse pour la lisibilité) */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-br from-blue-900/90 via-blue-900/40 to-slate-900/90 shadow-inner"></div>
+
+            {/* LE CONTENU (Doit être en z-20 pour être au-dessus de l'image) */}
+            <div className="relative z-20">
+                <div className="w-10 h-10 bg-white/20 jus backdrop-blur-md rounded-xl flex items-center justify-center mb-8 border border-white/30">
+                    <span className="font-black italic text-sm">NV</span>
+                </div>
+                <h2 className="text-4xl font-black italic leading-tight">
+                Accédez à <br /> l'écosystème <br /> 
+                <span className="text-blue-400">NovaVerse.</span>
+                </h2>
+                <p className="mt-6 text-blue-100/80 font-medium max-w-xs leading-relaxed">
+                Gérez vos flux logistiques mondiaux avec la précision d'une intelligence supérieure.
+                </p>
+            </div>
+
+            <div className="relative z-20 flex items-center gap-4">
+                <div className="text-[10px] font-black tracking-[0.2em] py-2 px-4 bg-white/10 backdrop-blur-md rounded-full border border-white/10">
+                    MOD_LOGISTICS_V1.0
+                </div>
+            </div>
+
+            {/* EFFET DE LUMIÈRE DYNAMIQUE */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-30 z-10"></div>
+            </div>
         </div>
 
         {/* Côté Droit : Formulaire */}
