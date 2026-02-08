@@ -1,4 +1,4 @@
-import { AlertCircle, Calculator, Plane, Ship } from "lucide-react";
+import { AlertCircle, Calculator, Info, Plane, Ship } from "lucide-react";
 import { useEffect, useState } from "react";
 
 
@@ -8,7 +8,13 @@ const CalculatorView = () => {
     const [weight, setWeight] = useState(1);
     const [origin, setOrigin] = useState('china');
     const [mode, setMode] = useState('air');
-    const [total, setTotal] = useState('0');
+    const [total, setTotal] = useState(0);
+    const [length, setLength] = useState(0);
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+    const [isVolumetric, setIsVolumetric] = useState(false);
+
+
 
     const rates = {
         china : {air: 8500, sea: 3000, customs: 0.25},
@@ -17,10 +23,18 @@ const CalculatorView = () => {
     };
 
     const calculateEstimate = () => {
-        const basePrice = weight * rates[origin][mode];
+        // Calcul du poids volumetrique 
+        let volumetricWeight = (length * width * height) / 5000;
+
+        if (isVolumetric) {
+            const volWeight = (parseFloat(length) * parseFloat(width) * parseFloat(height)) / 5000;
+            finalWeight = Math.max(finalWeight, volWeight);
+        }
+        
+        const basePrice = finalWeight * rates[origin][mode];
         const customsFees = basePrice * rates[origin].customs;
-        const handlingFee = 15000; //Frais du dossier fixes
-        setTotal(basePrice + customsFees + handlingFee);
+        setTotal(basePrice + customsFees + 5000);
+        
     };
 
     // Calcul automatique lorsqu'il y'a changement de variable
@@ -56,14 +70,65 @@ const CalculatorView = () => {
                             </div>
 
                             {/* Poids */}
-                            <div>
-                            <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-3">Poids estimé (KG)</label>
-                            <input 
-                                type="number" 
-                                value={weight}
-                                onChange={(e) => setWeight(e.target.value)}
-                                className="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl py-4 px-6 font-bold dark:text-white focus:ring-2 focus:ring-blue-500"
-                            />
+                            {/* Section Poids Volumétrique (Méthode Scorpion) */}
+                            <div className="space-y-6">
+                                {/* Sélecteur de Mode (Switch stylisé) */}
+                                <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-2xl">
+                                    <button 
+                                    onClick={() => setIsVolumetric(false)}
+                                    className={`flex-1 py-3 rounded-xl text-xs font-black transition-all ${!isVolumetric ? 'bg-white dark:bg-slate-800 shadow-sm text-blue-600' : 'text-slate-400'}`}
+                                    >
+                                    POIDS SIMPLE
+                                    </button>
+                                    <button 
+                                    onClick={() => setIsVolumetric(true)}
+                                    className={`flex-1 py-3 rounded-xl text-xs font-black transition-all ${isVolumetric ? 'bg-white dark:bg-slate-800 shadow-sm text-blue-600' : 'text-slate-400'}`}
+                                    >
+                                    DIMENSIONS (L×l×h)
+                                    </button>
+                                </div>
+
+                                {/* Formulaire Dynamique */}
+                                <div className="animate-in slide-in-from-bottom-2 duration-300">
+                                    {!isVolumetric ? (
+                                    /* Vue Poids Simple */
+                                    <div>
+                                        <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-3 text-center">Poids du colis (KG)</label>
+                                        <input 
+                                        type="number" 
+                                        value={weight}
+                                        onChange={(e) => setWeight(e.target.value)}
+                                        className="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl py-6 px-6 text-2xl text-center font-black dark:text-white focus:ring-2 focus:ring-blue-500"
+                                        placeholder="0.00"
+                                        />
+                                    </div>
+                                    ) : (
+                                    /* Vue Dimensions */
+                                    <div className="space-y-4">
+                                        <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-3 text-center">Dimensions du carton (cm)</label>
+                                        <div className="grid grid-cols-3 gap-3">
+                                        {['L', 'l', 'h'].map((dim, i) => (
+                                            <div key={dim} className="flex flex-col items-center">
+                                            <input 
+                                                type="number" 
+                                                placeholder={dim}
+                                                onChange={(e) => {
+                                                if(i === 0) setLength(e.target.value);
+                                                if(i === 1) setWidth(e.target.value);
+                                                if(i === 2) setHeight(e.target.value);
+                                                }}
+                                                className="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl py-4 text-center font-black dark:text-white focus:ring-2 focus:ring-blue-500"
+                                            />
+                                            <span className="text-[10px] font-bold text-slate-400 mt-2 uppercase">{dim === 'L' ? 'Long' : dim === 'l' ? 'Larg' : 'Haut'}</span>
+                                            </div>
+                                        ))}
+                                        </div>
+                                        <p className="text-[10px] text-center text-slate-400 italic mt-2">
+                                        Poids calculé : {((length * width * height) / 5000).toFixed(2)} kg
+                                        </p>
+                                    </div>
+                                    )}
+                                </div>
                             </div>
 
                             {/* Mode de Transport */}
