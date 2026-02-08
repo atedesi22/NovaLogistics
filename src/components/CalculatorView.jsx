@@ -108,7 +108,7 @@ const CalculatorView = () => {
                                 </div>
                                 <div className="flex justify-between text-sm">
                                     <span className="text-slate-400 font-medium">Frais fixes agence</span>
-                                    <span className="font-bold">5,000 FCFA</span>
+                                    <span className="font-bold">15,000 FCFA</span>
                                 </div>
                             </div>
                         </div>
