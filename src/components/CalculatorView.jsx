@@ -24,7 +24,7 @@ const CalculatorView = () => {
 
     const calculateEstimate = () => {
         // Calcul du poids volumetrique 
-        let volumetricWeight = (length * width * height) / 5000;
+        let finalWeight = (length * width * height) / 5000;
 
         if (isVolumetric) {
             const volWeight = (parseFloat(length) * parseFloat(width) * parseFloat(height)) / 5000;
